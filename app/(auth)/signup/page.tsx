@@ -56,7 +56,7 @@ export default function SignupPage() {
               letterSpacing: "0.01em",
             }}
           >
-            Shadow Tixs
+            Shadow Ticket
           </h1>
           <p
             className="mt-2 text-eyebrow"

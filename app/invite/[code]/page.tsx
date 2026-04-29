@@ -17,7 +17,7 @@ export default async function InvitePage({ params }: { params: Promise<{ code: s
     <div className="min-h-screen bg-gray-50 flex items-start justify-center pt-16 px-4">
       <div className="w-full max-w-md">
         <h1 className="text-3xl font-bold text-center mb-2">You&apos;re invited!</h1>
-        <p className="text-center text-gray-500 mb-8 text-sm">Shadow Tixs</p>
+        <p className="text-center text-gray-500 mb-8 text-sm">Shadow Ticket</p>
 
         <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm mb-4">
           <h2 className="text-xl font-bold">{invite.event.name}</h2>

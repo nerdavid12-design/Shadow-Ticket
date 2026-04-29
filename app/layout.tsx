@@ -22,7 +22,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Shadow Tixs",
+  title: "Shadow Ticket",
   description: "Shadow Audience Tracking for Event Venues",
 };
 
