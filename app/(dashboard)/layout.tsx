@@ -31,7 +31,7 @@ export default async function DashboardLayout({ children }: { children: React.Re
               letterSpacing: "0.01em",
             }}
           >
-            Shadow Tixs
+            Shadow Ticket
           </Link>
           <LogoutButton />
         </div>
