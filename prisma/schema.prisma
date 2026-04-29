@@ -1,0 +1,74 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../app/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String
+  name         String?
+  createdAt    DateTime @default(now())
+  events       Event[]
+}
+
+model Event {
+  id          String   @id @default(cuid())
+  organizerId String
+  organizer   User     @relation(fields: [organizerId], references: [id])
+  name        String
+  date        DateTime
+  location    String
+  capacity    Int?
+  description String?
+  createdAt   DateTime @default(now())
+  invites     Invite[]
+
+  @@index([organizerId])
+}
+
+model Invite {
+  id             String   @id @default(cuid())
+  eventId        String
+  event          Event    @relation(fields: [eventId], references: [id])
+  parentInviteId String?
+  parent         Invite?  @relation("InviteChain", fields: [parentInviteId], references: [id])
+  children       Invite[] @relation("InviteChain")
+  uniqueCode     String   @unique
+  shortCode      String   @unique
+  createdAt      DateTime @default(now())
+  response       Response?
+  sharesFrom     Share[]  @relation("SharesFrom")
+  sharesTo       Share[]  @relation("SharesTo")
+
+  @@index([eventId])
+}
+
+model Response {
+  id             String    @id @default(cuid())
+  inviteId       String    @unique
+  invite         Invite    @relation(fields: [inviteId], references: [id])
+  recipientEmail String
+  recipientName  String?
+  acceptedAt     DateTime  @default(now())
+  attended       Boolean   @default(false)
+  attendedAt     DateTime?
+
+  @@index([recipientEmail])
+}
+
+model Share {
+  id           String   @id @default(cuid())
+  fromInviteId String
+  fromInvite   Invite   @relation("SharesFrom", fields: [fromInviteId], references: [id])
+  toEmail      String
+  toInviteId   String?
+  toInvite     Invite?  @relation("SharesTo", fields: [toInviteId], references: [id])
+  createdAt    DateTime @default(now())
+
+  @@index([fromInviteId])
+}
