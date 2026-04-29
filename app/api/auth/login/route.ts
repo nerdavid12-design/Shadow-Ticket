@@ -38,7 +38,8 @@ export async function POST(req: NextRequest) {
       path: "/",
     });
     return res;
-  } catch {
+  } catch (err) {
+    console.error("[login]", err);
     return NextResponse.json({ error: "Something went wrong. Please try again." }, { status: 500 });
   }
 }
