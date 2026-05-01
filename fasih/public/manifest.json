@@ -1,0 +1,10 @@
+{
+  "name": "Lughz",
+  "short_name": "Lughz",
+  "description": "Daily English learning puzzle",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FAF7F2",
+  "theme_color": "#1A6B5A",
+  "icons": []
+}
